@@ -19,7 +19,7 @@ class CalculateMatchPredictionsAction
             $match->predictions as $prediction
         ) {
 
-            $puntos = $this->scoringService
+            $resultado = $this->scoringService
                 ->calcular(
                     $match->goles_local,
                     $match->goles_visitante,
@@ -28,7 +28,8 @@ class CalculateMatchPredictionsAction
                 );
 
             $prediction->update([
-                'puntos' => $puntos,
+                'puntos' => $resultado['puntos'],
+                'resultado' => $resultado['resultado'],
             ]);
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ResultadoPronostico;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,6 +23,7 @@ class Prediction extends Model
     {
         return [
             'puntos' => 'integer',
+            'resultado' => ResultadoPronostico::class,
         ];
     }
 

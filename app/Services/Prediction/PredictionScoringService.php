@@ -35,13 +35,13 @@ class PredictionScoringService
 
             return [
                 'puntos' => 1,
-                'resultado' => 'ganador'
+                'resultado' => 'ganador_correcto'
             ];
         }
 
         return [
             'puntos' => 0,
-            'resultado' => 'fallado'
+            'resultado' => 'incorrecto'
         ];
     }
 }
