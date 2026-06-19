@@ -14,3 +14,9 @@ Route::middleware(['auth'])->group(function () {
 Route::redirect('/home', '/')->name('home');
 
 require __DIR__.'/settings.php';
+
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Middleware\AdminAccess;
+
+// Admin area accessible only with ?key=ADMIN_ACCESS_KEY or X-Admin-Key header
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users')->middleware(AdminAccess::class);
