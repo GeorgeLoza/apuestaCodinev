@@ -22,6 +22,15 @@
                         {{ __('Posiciones') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
+
+                <flux:sidebar.group :heading="__('Administración')" class="grid">
+                    <flux:sidebar.item icon="users" :href="route('admin.users', ['key' => request()->query('key')])" :current="request()->routeIs('admin.users')" wire:navigate>
+                        {{ __('Usuarios') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="credit-card" :href="route('admin.payments.index', ['key' => request()->query('key')])" :current="request()->routeIs('admin.payments.*')" wire:navigate>
+                        {{ __('Pagos') }}
+                    </flux:sidebar.item>
+                </flux:sidebar.group>
             </flux:sidebar.nav>
 
             <flux:spacer />

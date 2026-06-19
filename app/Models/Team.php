@@ -32,9 +32,84 @@ class Team extends Model
         );
     }
 
+    public function getNombreAttribute(?string $value): string
+    {
+        $translations = [
+            'argentina' => 'Argentina',
+            'brazil' => 'Brasil',
+            'france' => 'Francia',
+            'germany' => 'Alemania',
+            'spain' => 'España',
+            'italy' => 'Italia',
+            'portugal' => 'Portugal',
+            'england' => 'Inglaterra',
+            'belgium' => 'Bélgica',
+            'croatia' => 'Croacia',
+            'netherlands' => 'Países Bajos',
+            'uruguay' => 'Uruguay',
+            'mexico' => 'México',
+            'united states' => 'Estados Unidos',
+            'usa' => 'Estados Unidos',
+            'canada' => 'Canadá',
+            'japan' => 'Japón',
+            'south korea' => 'Corea del Sur',
+            'senegal' => 'Senegal',
+            'morocco' => 'Marruecos',
+            'cameroon' => 'Camerún',
+            'ghana' => 'Ghana',
+            'tunisia' => 'Túnez',
+            'ecuador' => 'Ecuador',
+            'qatar' => 'Catar',
+            'saudi arabia' => 'Arabia Saudita',
+            'iran' => 'Irán',
+            'australia' => 'Australia',
+            'costa rica' => 'Costa Rica',
+            'wales' => 'Gales',
+            'poland' => 'Polonia',
+            'denmark' => 'Dinamarca',
+            'switzerland' => 'Suiza',
+            'serbia' => 'Serbia',
+            'colombia' => 'Colombia',
+            'peru' => 'Perú',
+            'chile' => 'Chile',
+            'venezuela' => 'Venezuela',
+            'paraguay' => 'Paraguay',
+            'bolivia' => 'Bolivia',
+            'panama' => 'Panamá',
+            'jamaica' => 'Jamaica',
+            'honduras' => 'Honduras',
+            'el salvador' => 'El Salvador',
+            'new zealand' => 'Nueva Zelanda',
+            'south africa' => 'Sudáfrica',
+            'egypt' => 'Egipto',
+            'nigeria' => 'Nigeria',
+            'algeria' => 'Argelia',
+            'ivory coast' => 'Costa de Marfil',
+            'czechia' => 'Chequia',
+            'czech republic' => 'Chequia',
+            'hungary' => 'Hungría',
+            'romania' => 'Rumania',
+            'norway' => 'Noruega',
+            'slovakia' => 'Eslovaquia',
+            'finland' => 'Finlandia',
+            'ireland' => 'Irlanda',
+            'north korea' => 'Corea del Norte',
+            'georgia' => 'Georgia',
+            'slovenia' => 'Eslovenia',
+            'albania' => 'Albania',
+            'trinidad and tobago' => 'Trinidad y Tobago',
+            'haiti' => 'Haití',
+            'curacao' => 'Curaçao',
+        ];
+
+        $key = strtolower(trim($value ?? ''));
+
+        return $translations[$key] ?? $value ?? '';
+    }
+
     public function getFlagUrl(): string
     {
-        $name = strtolower(trim($this->nombre));
+        $name = strtolower(trim($this->attributes['nombre'] ?? ''));
         
         $map = [
             'argentina' => 'ar',

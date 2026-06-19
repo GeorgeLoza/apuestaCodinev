@@ -6,6 +6,7 @@ use App\Models\FootballMatch;
 use App\Models\Team;
 use App\Models\Tournament;
 use App\Services\Api\FootballApiService;
+use Illuminate\Support\Facades\Cache;
 
 class SyncMatchesAction
 {

@@ -15,8 +15,14 @@ Route::redirect('/home', '/')->name('home');
 
 require __DIR__.'/settings.php';
 
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\AdminAccess;
 
 // Admin area accessible only with ?key=ADMIN_ACCESS_KEY or X-Admin-Key header
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users')->middleware(AdminAccess::class);
+Route::get('/admin/payments', [PaymentController::class, 'index'])->name('admin.payments.index')->middleware(AdminAccess::class);
+Route::get('/admin/payments/create', [PaymentController::class, 'create'])->name('admin.payments.create')->middleware(AdminAccess::class);
+Route::post('/admin/payments', [PaymentController::class, 'store'])->name('admin.payments.store')->middleware(AdminAccess::class);
+Route::get('/admin/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('admin.payments.edit')->middleware(AdminAccess::class);
+Route::put('/admin/payments/{payment}', [PaymentController::class, 'update'])->name('admin.payments.update')->middleware(AdminAccess::class);
