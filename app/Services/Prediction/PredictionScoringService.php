@@ -18,7 +18,7 @@ class PredictionScoringService
         ) {
 
             return [
-                'puntos' => 3,
+                'puntos' => 2,
                 'resultado' => 'exacto'
             ];
         }

@@ -15,7 +15,7 @@
         <div>
             <span class="font-bold text-zinc-800 dark:text-white">Reglas de puntuación:</span>
             <ul class="list-disc list-inside mt-1 space-y-1">
-                <li><strong class="text-emerald-600 dark:text-emerald-400">3 puntos</strong> por acertar el resultado exacto (ej. pronosticaste 2-1 y el partido terminó 2-1).</li>
+                <li><strong class="text-emerald-600 dark:text-emerald-400">2 puntos</strong> por acertar el resultado exacto (ej. pronosticaste 2-1 y el partido terminó 2-1).</li>
                 <li><strong class="text-sky-600 dark:text-sky-400">1 punto</strong> por acertar el ganador o empate pero no el marcador exacto (ej. pronosticaste 2-0 y terminó 1-0).</li>
                 <li><strong class="text-zinc-600 dark:text-zinc-400">0 puntos</strong> si no acertaste el resultado ni el ganador.</li>
             </ul>
