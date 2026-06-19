@@ -6,7 +6,6 @@ use App\Models\FootballMatch;
 use App\Models\Team;
 use App\Models\Tournament;
 use App\Services\Api\FootballApiService;
-use Carbon\Carbon;
 
 class SyncMatchesAction
 {
@@ -92,15 +91,16 @@ class SyncMatchesAction
 
                     'tipo' => $dto->type,
 
-                    'fecha_partido' => Carbon::createFromFormat(
-                        'm/d/Y H:i',
-                        $dto->localDate
-                    ),
+                    /*
+                    |--------------------------------------------------------------------------
+                    | Hora ya convertida a Bolivia
+                    |--------------------------------------------------------------------------
+                    */
+                    'fecha_partido' => $dto->matchDate,
 
-                    'fecha_cierre_apuestas' => Carbon::createFromFormat(
-                        'm/d/Y H:i',
-                        $dto->localDate
-                    )->subMinutes(1),
+                    'fecha_cierre_apuestas' => $dto->matchDate
+                        ->copy()
+                        ->subMinute(),
 
                     'goles_local' => $dto->homeScore,
 
