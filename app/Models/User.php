@@ -18,14 +18,14 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 /**
  * @property int $id
  * @property string $name
- * @property string $email
+ * @property string $codigo
  * @property string|null $telefono
  * @property bool $activo
- * @property Carbon|null $email_verified_at
+ * @property Carbon|null $codigo_verified_at
  */
 #[Fillable([
     'name',
-    'email',
+    'codigo',
     'password',
     'telefono',
     'activo'
@@ -48,7 +48,7 @@ class User extends Authenticatable implements PasskeyUser
     {
         return [
             'activo' => 'boolean',
-            'email_verified_at' => 'datetime',
+            'codigo_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }

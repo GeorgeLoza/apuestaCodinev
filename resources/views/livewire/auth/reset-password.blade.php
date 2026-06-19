@@ -10,14 +10,15 @@
             <!-- Token -->
             <input type="hidden" name="token" value="{{ request()->route('token') }}">
 
-            <!-- Email Address -->
+            <!-- Code -->
             <flux:input
-                name="email"
+                name="codigo"
                 value="{{ request('email') }}"
-                :label="__('Email')"
-                type="email"
+                :label="__('Code')"
+                type="text"
                 required
-                autocomplete="email"
+                autocomplete="off"
+                placeholder="123456"
             />
 
             <!-- Password -->

@@ -18,7 +18,15 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        app()->bind(
+            \Laravel\Fortify\Http\Controllers\PasswordResetLinkController::class,
+            \App\Http\Controllers\Auth\PasswordResetLinkController::class,
+        );
+
+        app()->bind(
+            \Laravel\Fortify\Http\Controllers\NewPasswordController::class,
+            \App\Http\Controllers\Auth\NewPasswordController::class,
+        );
     }
 
     /**

@@ -45,9 +45,9 @@ return [
     |
     */
 
-    'username' => 'email',
+    'username' => 'codigo',
 
-    'email' => 'email',
+    'email' => 'codigo',
 
     /*
     |--------------------------------------------------------------------------
@@ -163,7 +163,6 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        Features::emailVerification(),
         Features::twoFactorAuthentication([
             'confirm' => true,
             'confirmPassword' => true,

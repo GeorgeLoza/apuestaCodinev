@@ -173,7 +173,7 @@
                                                 <flux:badge size="sm" color="emerald" variant="outline" class="font-bold py-0.5">Tú</flux:badge>
                                             @endif
                                         </span>
-                                        <span class="text-xs text-zinc-400">{{ $user->email }}</span>
+                                        <span class="text-xs text-zinc-400">{{ $user->codigo }}</span>
                                     </div>
                                 </div>
                             </td>
