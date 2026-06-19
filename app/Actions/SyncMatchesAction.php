@@ -113,5 +113,7 @@ class SyncMatchesAction
                 ]
             );
         }
+
+        Cache::put('football_api_last_sync', now()->toDateTimeString());
     }
 }

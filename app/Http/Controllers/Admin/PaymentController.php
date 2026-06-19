@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Prediction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PaymentController extends Controller
 {
@@ -16,7 +17,8 @@ class PaymentController extends Controller
             ->orderByDesc('created_at')
             ->paginate(30);
 
-        $lastSync = cache('football_api_last_sync');
+        $lastSyncString = cache('football_api_last_sync');
+        $lastSync = $lastSyncString ? Carbon::parse($lastSyncString) : null;
 
         return view('admin.payments.index', compact('payments', 'lastSync'));
     }
