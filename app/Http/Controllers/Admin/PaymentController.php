@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\SyncMatchesAction;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\Prediction;
@@ -57,6 +58,15 @@ class PaymentController extends Controller
     public function edit(Payment $payment)
     {
         return view('admin.payments.edit', compact('payment'));
+    }
+
+    public function sync(SyncMatchesAction $syncMatchesAction)
+    {
+        $syncMatchesAction->execute();
+
+        return redirect()
+            ->route('admin.payments.index')
+            ->with('success', 'API sincronizada correctamente.');
     }
 
     public function update(Request $request, Payment $payment)

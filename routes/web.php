@@ -24,5 +24,6 @@ Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users'
 Route::get('/admin/payments', [PaymentController::class, 'index'])->name('admin.payments.index')->middleware(AdminAccess::class);
 Route::get('/admin/payments/create', [PaymentController::class, 'create'])->name('admin.payments.create')->middleware(AdminAccess::class);
 Route::post('/admin/payments', [PaymentController::class, 'store'])->name('admin.payments.store')->middleware(AdminAccess::class);
+Route::post('/admin/payments/sync', [PaymentController::class, 'sync'])->name('admin.payments.sync')->middleware(AdminAccess::class);
 Route::get('/admin/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('admin.payments.edit')->middleware(AdminAccess::class);
 Route::put('/admin/payments/{payment}', [PaymentController::class, 'update'])->name('admin.payments.update')->middleware(AdminAccess::class);

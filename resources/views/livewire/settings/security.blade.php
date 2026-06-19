@@ -1,13 +1,13 @@
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <flux:heading class="sr-only">{{ __('Security settings') }}</flux:heading>
+    <flux:heading class="sr-only">{{ __('Configuration de seguridad') }}</flux:heading>
 
-    <x-settings.layout :heading="__('Update password')" :subheading="__('Ensure your account is using a long, random password to stay secure')">
+    <x-settings.layout :heading="__('Actualizar contraseña')" :subheading="__('Asegura tu cuenta con una contraseña fuerte y única')">
         <form method="POST" wire:submit="updatePassword" class="mt-6 space-y-6">
             <flux:input
                 wire:model="current_password"
-                :label="__('Current password')"
+                :label="__('Contraseña actual')"
                 type="password"
                 required
                 autocomplete="current-password"
@@ -15,7 +15,7 @@
             />
             <flux:input
                 wire:model="password"
-                :label="__('New password')"
+                :label="__('Nueva Contraseña')"
                 type="password"
                 required
                 autocomplete="new-password"
@@ -24,7 +24,7 @@
             />
             <flux:input
                 wire:model="password_confirmation"
-                :label="__('Confirm password')"
+                :label="__('Confirmar contraseña')"
                 type="password"
                 required
                 autocomplete="new-password"
@@ -33,11 +33,11 @@
             />
 
             <div class="flex items-center gap-4">
-                <flux:button variant="primary" type="submit" data-test="update-password-button">{{ __('Save') }}</flux:button>
+                <flux:button variant="primary" type="submit" data-test="update-password-button">{{ __('Actualizar contraseña') }}</flux:button>
             </div>
         </form>
 
-        @if ($canManageTwoFactor)
+        {{-- @if ($canManageTwoFactor)
             <section class="mt-12">
                 <flux:heading>{{ __('Two-factor authentication') }}</flux:heading>
                 <flux:subheading>{{ __('Manage your two-factor authentication settings') }}</flux:subheading>
@@ -291,7 +291,7 @@
                     <x-passkey-registration />
                 </div>
             </section>
-        @endif
+        @endif --}}
     </x-settings.layout>
 
     <flux:modal

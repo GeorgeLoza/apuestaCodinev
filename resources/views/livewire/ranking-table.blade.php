@@ -131,6 +131,13 @@
 
         <!-- Leaderboard Table -->
         <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
+            <div class="p-4 border-b border-zinc-200 dark:border-zinc-700 text-sm text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-900/70">
+                @if($isAdmin)
+                    Este es el ranking completo. Solo tú puedes ver todos los usuarios.
+                @else
+                    Estás viendo un resumen motivador del ranking: los 5 mejores y tu posición. Si estás fuera del top 5, se ocultan los puestos intermedios para mantener la competencia sana.
+                @endif
+            </div>
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-zinc-50 dark:bg-zinc-800/50 text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase border-b border-zinc-200 dark:border-zinc-800">
@@ -204,5 +211,18 @@
                 </tbody>
             </table>
         </div>
+
+        @if(! $isAdmin && $showCurrentUserRow)
+            <div class="mt-6 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-5 text-sm text-zinc-700 dark:text-zinc-200">
+                <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <p class="font-semibold text-zinc-900 dark:text-white">Tu posición actual</p>
+                        <p>Estás en el puesto <span class="font-bold">#{{ $currentPosition }}</span> con <span class="font-bold">{{ $currentUserRecord->total_points }}</span> puntos.</p>
+                    </div>
+                    <div class="rounded-full bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-200">
+                        Sigue participando, puedes subir posiciones.</div>
+                </div>
+            </div>
+        @endif
     @endif
 </div>

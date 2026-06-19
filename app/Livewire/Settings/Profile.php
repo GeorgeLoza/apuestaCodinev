@@ -17,6 +17,8 @@ class Profile extends Component
 
     public string $codigo = '';
 
+    public bool $showDeleteUser = false;
+
     /**
      * Mount the component.
      */

@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -11,7 +13,10 @@ class RankingTable extends Component
 {
     public function render()
     {
-        $users = User::query()
+        $isAdmin = Request::session()->get('admin_access', false)
+            || Request::query('key') === env('ADMIN_ACCESS_KEY');
+
+        $allUsers = User::query()
             ->withSum('predictions', 'puntos')
             ->withCount([
                 'predictions as total_predictions',
@@ -30,14 +35,35 @@ class RankingTable extends Component
             ->sortByDesc('total_points')
             ->values();
 
-        // Separate top 3 for the podium
-        $top3 = $users->take(3);
-        $remainingUsers = $users->slice(3);
+        $top3 = $allUsers->take(3);
+        $currentUser = Auth::user();
+        $currentPosition = null;
+        $currentUserRecord = null;
+
+        if ($currentUser) {
+            $currentPosition = $allUsers->search(fn ($user) => $user->id === $currentUser->id);
+            if ($currentPosition !== false) {
+                $currentPosition += 1;
+                $currentUserRecord = $allUsers->firstWhere('id', $currentUser->id);
+            }
+        }
+
+        if ($isAdmin) {
+            $users = $allUsers;
+            $remainingUsers = $allUsers->slice(3);
+        } else {
+            $users = $allUsers->take(5);
+            $remainingUsers = collect();
+        }
 
         return view('livewire.ranking-table', [
             'users' => $users,
             'top3' => $top3,
             'remainingUsers' => $remainingUsers,
+            'isAdmin' => $isAdmin,
+            'currentPosition' => $currentPosition,
+            'currentUserRecord' => $currentUserRecord,
+            'showCurrentUserRow' => ! $isAdmin && $currentUserRecord && $currentPosition > 5,
         ]);
     }
 }

@@ -13,9 +13,17 @@
                     </div>
 
                     <div class="flex flex-col items-start gap-3 sm:items-end">
-                        <a href="{{ route('admin.payments.create', ['key' => request()->query('key')]) }}" class="inline-flex items-center gap-2 rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-500">
-                            Nuevo pago
-                        </a>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="{{ route('admin.payments.create', ['key' => request()->query('key')]) }}" class="inline-flex items-center gap-2 rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-500">
+                                Nuevo pago
+                            </a>
+                            <form method="POST" action="{{ route('admin.payments.sync', ['key' => request()->query('key')]) }}" class="inline">
+                                @csrf
+                                <button type="submit" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800">
+                                    Sincronizar API
+                                </button>
+                            </form>
+                        </div>
                         <span class="text-sm text-zinc-500 dark:text-zinc-400">
                             Última actualización API:
                             {{ $lastSync ? $lastSync->format('d/m/Y H:i') : 'No disponible' }}
